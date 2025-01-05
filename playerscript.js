@@ -23,8 +23,8 @@ async function initializePlayer(movieData) {
     
     playerInstance.setup({
         sources: Object.values(videoSources),
-        image: `https://image.tmdb.org/t/p/original${showData.backdrop_path}`,
-        title: `${showData.name} - S${season}E${episode}`,
+        image: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`,
+        title: movieData.title || movieData.name,
         width: "100%",
         aspectratio: "16:9",
         stretching: "uniform",
@@ -35,6 +35,12 @@ async function initializePlayer(movieData) {
         playbackRateControls: true,
         skin: {
             name: "netflix"
+        },
+        captions: {
+            color: '#FFF',
+            fontSize: 14,
+            backgroundOpacity: 0,
+            edgeStyle: 'raised'
         }
     });
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Player</title>
+    <link rel="stylesheet" href="playerstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- JW Player Setup -->
+    <script src='https://ssl.p.jwpcdn.com/player/v/8.6.2/jwplayer.js'></script>
+    <script>jwplayer.key = '64HPbvSQorQcd52B8XFuhMtEoitbvY/EXJmMBfKcXZQU2Rnn';</script>
+    <style type="text/css" media="all">
+        html,body{padding:0;margin:0;height:100%}
+        #player{width:100%!important;height:100%!important;overflow:hidden;background-color:#000}
+    </style>
+</head>
+<body>
+    <div class="player-wrapper">
+        <div class="video-info">
+            <h1 class="movie-title">The Dark Knight</h1>
+            <div class="meta-info">
+                <span class="quality">4K</span>
+                <span class="duration">2h 32m</span>
+                <span class="year">2008</span>
+                <span class="rating"><i class="fas fa-star"></i> 9.0</span>
+            </div>
+        </div>
+
+        
+          <div class="player-container">
+              <div id="player"></div>
+          </div>
+          <div class="source-selector-container">
+            <select id="sourceSelector" onchange="changeSource(this.value)">
+                <option value="source1">Server 1 - HD</option>
+                <option value="source2">Server 2 - 4K</option>
+                <option value="source3">Server 3 - Backup</option>
+                <option value="source4">Server 4 - Alternative</option>
+            </select>
+        </div>
+        <div class="movie-details">
+            <div class="synopsis">
+                <h2>Synopsis</h2>
+                <p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.</p>
+            </div>
+            
+            <div class="additional-info">
+                <div class="info-item">
+                    <span class="label">Director:</span>
+                    <span class="value">Christopher Nolan</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Cast:</span>
+                    <span class="value">Christian Bale, Heath Ledger, Aaron Eckhart</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Genre:</span>
+                    <span class="value">Action, Crime, Drama</span>
+                </div>
+            </div>
+        </div>
+
+        <button id="backButton" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back to Browse
+        </button>
+    </div>
+    <script src="sources.js"></script>
+    <script src="script.js"></script>
+    <script src="playerscript.js"></script>
+</body>
+</html>

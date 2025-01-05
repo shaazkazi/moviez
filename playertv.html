@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Show Player</title>
+    <link rel="stylesheet" href="playerstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- JW Player Setup -->
+    <script src='https://ssl.p.jwpcdn.com/player/v/8.6.2/jwplayer.js'></script>
+    <script>jwplayer.key = '64HPbvSQorQcd52B8XFuhMtEoitbvY/EXJmMBfKcXZQU2Rnn';</script>
+</head>
+<body>
+    <div class="player-wrapper">
+        <div class="video-info">
+            <h1 class="show-title"></h1>
+            <div class="meta-info">
+                <span class="quality">HD</span>
+                <span class="episode-info"></span>
+                <span class="year"></span>
+                <span class="rating"></span>
+            </div>
+        </div>
+
+        
+
+        <div class="player-container">
+            <div id="player"></div>
+        </div>
+
+        <div class="source-selector-container">
+            <select id="seasonSelector" onchange="changeSeason(this.value)" class="season-select">
+            </select>
+            <div class="episodes-container">
+            </div>
+            <select id="sourceSelector" onchange="changeSource(this.value)" class="source-select">
+            </select>
+        </div>
+
+        <div class="show-details">
+            <div class="synopsis">
+                <h2>Synopsis</h2>
+                <p></p>
+            </div>
+            
+            <div class="additional-info">
+                <div class="info-item">
+                    <span class="label">Created By:</span>
+                    <span class="value"></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Cast:</span>
+                    <span class="value"></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Genre:</span>
+                    <span class="value"></span>
+                </div>
+            </div>
+        </div>
+
+        <button id="backButton" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back to Browse
+        </button>
+    </div>
+    <script src="script.js"></script>
+    <script src="sourcestv.js"></script>
+    <script src="playertvscript.js"></script>
+</body>
+</html>

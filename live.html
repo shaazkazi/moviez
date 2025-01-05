@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TV Player</title>
+    <link rel="stylesheet" href="playerstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- JW Player Setup -->
+    <script src='https://ssl.p.jwpcdn.com/player/v/8.6.2/jwplayer.js'></script>
+    <script>jwplayer.key = '64HPbvSQorQcd52B8XFuhMtEoitbvY/EXJmMBfKcXZQU2Rnn';</script>
+</head>
+<body>
+    <div class="player-wrapper">
+        <div class="video-info">
+            <h1 class="channel-title"></h1>
+            <div class="meta-info">
+                <span class="quality">HD</span>
+                <span class="live-badge">LIVE</span>
+                <span class="viewers"></span>
+                <span class="category"></span>
+            </div>
+        </div>
+
+
+        <div class="player-container">
+            <div id="player"></div>
+        </div>
+
+        <div class="source-selector-container">
+            <select id="sourceSelector" onchange="changeSource(this.value)" class="source-select">
+            </select>
+        </div>
+
+        <div class="channel-details">
+            <div class="description">
+                <h2>About Channel</h2>
+                <p></p>
+            </div>
+            
+            <div class="additional-info">
+                <div class="info-item">
+                    <span class="label">Language:</span>
+                    <span class="value"></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Category:</span>
+                    <span class="value"></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Region:</span>
+                    <span class="value"></span>
+                </div>
+            </div>
+        </div>
+
+        <button id="backButton" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Back to Browse
+        </button>
+    </div>
+    <script src="livesources.js"></script>
+    <script src="live.js"></script>
+</body>
+</html>

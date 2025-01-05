@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Movies - BB Movies</title>
+    <title>Search Results - FMoviesClone</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/cinema-.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -21,10 +20,10 @@
     </header>
 
     <main class="container">
-        <section id="movies-section" class="movies-section">
-            <h2>All Movies</h2>
+        <section id="search-results" class="search-section">
+            <h2>Search Results for "<span id="search-query"></span>"</h2>
             <div class="cards-container">
-                <!-- Movies will be populated here -->
+                <!-- Results will be populated here -->
             </div>
         </section>
     </main>
@@ -41,6 +40,6 @@
     </footer>
 
     <script src="movies.js"></script>
-    <script src="script.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

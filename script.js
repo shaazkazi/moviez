@@ -84,15 +84,35 @@ document.addEventListener('DOMContentLoaded', () => {
         renderLiveChannels('livetv-section', contentList.allLiveChannels);
     }
 });
+function showError(message) {
+    const existingError = document.querySelector('.search-error');
+    if (existingError) {
+        existingError.remove();
+    }
+
+    const error = document.createElement('div');
+    error.className = 'search-error';
+    error.innerHTML = `
+        <i class="fas fa-exclamation-circle"></i>
+        ${message}
+    `;
+    document.body.appendChild(error);
+
+    setTimeout(() => error.classList.add('show'), 100);
+    setTimeout(() => {
+        error.classList.remove('show');
+        setTimeout(() => error.remove(), 300);
+    }, 3000);
+}
+
 function openSearchPage() {
     const searchValue = document.getElementById("searchInput").value;
     if (searchValue.trim()) {
         window.location.href = `search.html?q=${encodeURIComponent(searchValue)}`;
     } else {
-        alert("Please enter a search term!");
+        showError("Please enter a search term");
     }
 }
-
 function createLiveChannelCard(channelId, channelData) {
     return `
         <div class="card" onclick="window.location.href='live.html?id=${channelId}'">
@@ -122,4 +142,109 @@ function renderLiveChannels(sectionId, channels) {
     Object.entries(channels).forEach(([channelId, channelData]) => {
         container.innerHTML += createLiveChannelCard(channelId, channelData);
     });
+}
+
+// Add this to script.js after the existing code
+
+function setupSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const searchWrapper = document.querySelector('.search');
+    
+    // Create dropdown container
+    const dropdown = document.createElement('div');
+    dropdown.className = 'search-dropdown';
+    searchWrapper.appendChild(dropdown);
+    
+    searchInput.addEventListener('input', async () => {
+        const query = searchInput.value.trim().toLowerCase();
+        
+        if (query.length < 2) {
+            dropdown.style.display = 'none';
+            return;
+        }
+
+        const results = await searchContent(query);
+        displaySearchResults(results, dropdown);
+    });
+
+    // Handle Enter key
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            openSearchPage();
+        }
+    });
+}
+
+async function searchContent(query) {
+    const movieResults = await Promise.all(
+        movieData.movies.map(async id => {
+            const data = await fetchTMDBData('movie', id);
+            return {
+                id,
+                title: data.title,
+                type: 'movie',
+                poster_path: data.poster_path
+            };
+        })
+    );
+
+    const tvResults = await Promise.all(
+        movieData.tvShows.map(async id => {
+            const data = await fetchTMDBData('tv', id);
+            return {
+                id,
+                title: data.name,
+                type: 'tv',
+                poster_path: data.poster_path
+            };
+        })
+    );
+
+    const allResults = [...movieResults, ...tvResults].filter(item => 
+        item.title.toLowerCase().includes(query)
+    );
+
+    return allResults.slice(0, 5); // Limit to 5 results
+}
+
+function displaySearchResults(results, dropdown) {
+    if (!results.length) {
+        dropdown.style.display = 'none';
+        return;
+    }
+
+    dropdown.innerHTML = results.map(item => `
+        <div class="dropdown-item" onclick="window.location.href='${item.type === 'movie' ? 'player' : 'playertv'}.html?id=${item.id}&type=${item.type}'">
+            <img src="${TMDB_IMAGE_BASE}${item.poster_path}" onerror="this.src='placeholder.jpg'" alt="${item.title}">
+            <div class="item-info">
+                <div class="item-title">${item.title}</div>
+                <div class="item-type">${item.type === 'movie' ? 'Movie' : 'TV Show'}</div>
+            </div>
+        </div>
+    `).join('');
+    
+    dropdown.style.display = 'block';
+}
+
+// Add this to your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+    setupSearch();
+    // ... rest of your existing code
+});
+
+function scrollFeatured(direction) {
+    const container = document.querySelector('#featured-section .cards-container');
+    const scrollAmount = container.offsetWidth * 0.85;
+    
+    if (direction === 'left') {
+        container.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    } else {
+        container.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
 }

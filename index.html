@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BB Movies - Watch Movies & TV Shows</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/cinema-.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,9 +24,32 @@
         <section id="featured-section" class="featured-section">
             <div class="section-header">
                 <h2>Featured</h2>
-                <a href="featured.html" class="view-all">View All <i class="fas fa-chevron-right"></i></a>
+                <a href="movies.html" class="view-all">View All <i class="fas fa-chevron-right"></i></a>
             </div>
+            <button class="scroll-arrow scroll-left" onclick="scrollFeatured('left')">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="scroll-arrow scroll-right" onclick="scrollFeatured('right')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
             <div class="cards-container">
+                <div class="card">
+                    <div class="card-image" onclick="window.location.href='/movie/the-dark-knight'">
+                        <img src="https://picsum.photos/300/450" alt="The Dark Knight">
+                        <span class="quality">HD</span>
+                        <span class="duration">2h 30m</span>
+                        <div class="play-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>The Dark Knight</h3>
+                        <div class="meta">
+                            <span class="year">2023</span>
+                            <span class="rating"><i class="fas fa-star"></i> 9.0</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-image" onclick="window.location.href='/movie/the-dark-knight'">
                         <img src="https://picsum.photos/300/450" alt="The Dark Knight">
@@ -353,7 +377,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 FMoviesClone. All rights reserved.</p>
+            <p>&copy; 2025 BB Movies. All rights reserved.</p>
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -365,3 +389,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+

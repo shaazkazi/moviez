@@ -329,3 +329,187 @@ body {
 .card-image[onclick*="live.html"] .play-overlay i {
     content: "\f519";  /* Font Awesome broadcast tower icon */
 }
+.search {
+    position: relative;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1f1f1f;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-item:hover {
+    background: #2a2a2a;
+}
+
+.dropdown-item img {
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-title {
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.item-type {
+    color: #999;
+    font-size: 0.8em;
+}
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1f1f1f;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.dropdown-item:hover {
+    background: #2a2a2a;
+}
+
+.item-title {
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.item-type {
+    color: #999;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+.search-error {
+    position: fixed;
+    top: 80px; /* Increased from 20px to appear below search form */
+    right: 20px;
+    background: rgba(220, 53, 69, 0.95);
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-error.show {
+    transform: translateX(0);
+}
+
+.search-error i {
+    color: #fff;
+}
+/* Add to your existing styles */
+.featured-section .cards-container {
+    position: relative;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.featured-section .cards-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(243, 156, 18, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.scroll-arrow:hover {
+    background: var(--primary-color);
+}
+
+.scroll-left {
+    left: 10px;
+}
+
+.scroll-right {
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    .featured-section .cards-container {
+        display: flex;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .featured-section .card {
+        flex: 0 0 85%;
+        max-width: 85%;
+    }
+}
+.featured-section .cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0 10px;
+}
+
+.featured-section .cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .featured-section .cards-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

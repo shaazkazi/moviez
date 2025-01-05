@@ -36,9 +36,9 @@ const contentList = {
         1418    // The Big Bang Theory
     ],
     allLiveChannels: {
-        "sports1": {
-            name: "Sports HD",
-            category: "Sports",
+        "yrf": {
+            name: "yrf",
+            category: "Music",
             viewers: "25K"
         },
         "news1": {

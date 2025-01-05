@@ -9,10 +9,10 @@ const liveSources = {
             label: "Server 2 - 4K" 
         },
         channelInfo: {
-            name: "Sports Channel 1",
-            category: "Sports",
+            name: "YRF",
+            category: "Music",
             viewers: "15K",
-            description: "24/7 sports coverage including live matches, highlights, and analysis.",
+            description: "24/7 Music.",
             language: "English",
             region: "International",
             thumbnail: "https://picsum.photos/300/450",

@@ -26,23 +26,37 @@ async function initializePlayer(movieData) {
         image: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`,
         title: movieData.title || movieData.name,
         width: "100%",
-        aspectratio: "16:9",
-        stretching: "uniform",
-        preload: "auto",
-        controls: true,
-        primary: "html5",
-        autostart: false,
-        playbackRateControls: true,
-        skin: {
-            name: "netflix"
+    aspectratio: "16:9",
+    autostart: true,
+    controls: true,
+    mute: false,
+    qualityLabel: {
+        mobile: true,
+        label: '1080p', // or '720p' (default quality)
+        item: availableQualities
+    },
+    "skin": {
+        "controlbar": {
+            "background": "rgba(255, 255, 255, 0.0)", // Light grey background
+            "icons": "#e3ca0b", // Dark grey icons
+            "iconsActive": "#fcba03", // Golden yellow for active icons
+            "text": "#fff" // Dark grey text
         },
-        captions: {
-            color: '#FFF',
-            fontSize: 14,
-            backgroundOpacity: 0,
-            edgeStyle: 'raised'
+        "menus": {
+            "background": "#000000", // Bright blue background
+            "text": "#ffffff", // White text
+            "textActive": "#e3ca0b" // Pink text for active state
+        },
+        "timeslider": {
+            "progress": "#e3ca0b", // Bright green progress
+            "rail": "#ff66b2" // Light grey rail
+        },
+        "tooltips": {
+            "background": "#e3ca0b", // Orange tooltip background
+            "text": "#fff" // Dark grey tooltip text
         }
-    });
+    }
+});
 
     return playerInstance;
 }

@@ -22,7 +22,6 @@ function createCardHTML(item, mediaType) {
         ? `${Math.floor(item.runtime/60)}h ${item.runtime%60}m`
         : `S${item.number_of_seasons}`;
     
-    // Different routing for movies and TV shows
     const href = mediaType === 'movie' 
         ? `player.html?id=${item.id}&type=${mediaType}&title=${encodeURIComponent(title)}`
         : `playertv.html?id=${item.id}&type=${mediaType}&title=${encodeURIComponent(title)}`;
@@ -66,11 +65,61 @@ async function renderSection(sectionId, mediaType, ids) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    if (document.querySelector('.cards-container')) {
-        // Only run these if we're on the main page
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname;
+    
+    if (currentPath.includes('index.html') || currentPath === '/') {
+        // Main page
         renderSection('featured-section', 'movie', movieData.featured);
         renderSection('movies-section', 'movie', movieData.movies);
         renderSection('tvshows-section', 'tv', movieData.tvShows);
+    } else if (currentPath.includes('movies.html')) {
+        // Movies page
+        renderSection('movies-section', 'movie', contentList.allMovies);
+    } else if (currentPath.includes('tvshows.html')) {
+        // TV Shows page
+        renderSection('tvshows-section', 'tv', contentList.allTvShows);
+    } else if (currentPath.includes('livetv.html')) {
+        // Live TV page
+        renderLiveChannels('livetv-section', contentList.allLiveChannels);
     }
 });
+function openSearchPage() {
+    const searchValue = document.getElementById("searchInput").value;
+    if (searchValue.trim()) {
+        window.location.href = `search.html?q=${encodeURIComponent(searchValue)}`;
+    } else {
+        alert("Please enter a search term!");
+    }
+}
+
+function createLiveChannelCard(channelId, channelData) {
+    return `
+        <div class="card" onclick="window.location.href='live.html?id=${channelId}'">
+            <div class="card-image">
+                <img src="https://picsum.photos/300/450" alt="${channelData.name}">
+                <span class="quality">HD</span>
+                <span class="live-badge">LIVE</span>
+                <div class="play-overlay">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+            </div>
+            <div class="card-content">
+                <h3>${channelData.name}</h3>
+                <div class="meta">
+                    <span class="category">${channelData.category}</span>
+                    <span class="viewers"><i class="fas fa-eye"></i> ${channelData.viewers}</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderLiveChannels(sectionId, channels) {
+    const container = document.querySelector(`#${sectionId} .cards-container`);
+    container.innerHTML = '';
+    
+    Object.entries(channels).forEach(([channelId, channelData]) => {
+        container.innerHTML += createLiveChannelCard(channelId, channelData);
+    });
+}

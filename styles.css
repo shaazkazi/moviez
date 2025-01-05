@@ -302,3 +302,30 @@ body {
         max-width: 140px;
     }
 }
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.play-overlay i {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.card-image:hover .play-overlay {
+    opacity: 1;
+}
+
+/* For live TV cards */
+.card-image[onclick*="live.html"] .play-overlay i {
+    content: "\f519";  /* Font Awesome broadcast tower icon */
+}

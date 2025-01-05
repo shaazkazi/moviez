@@ -1,7 +1,7 @@
 const liveSources = {
     "sports1": {
         source1: { 
-            file: "https://example.com/sports1/hd.m3u8", 
+            file: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8", 
             label: "Server 1 - HD" 
         },
         source2: { 
